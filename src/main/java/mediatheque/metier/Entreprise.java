@@ -14,4 +14,6 @@ public class Entreprise {
     public void setRaisonSociale(String raisonSociale) {
         this.raisonSociale = raisonSociale;
     }
+
+
 }

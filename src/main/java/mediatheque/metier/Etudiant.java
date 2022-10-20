@@ -2,11 +2,11 @@ package mediatheque.metier;
 
 import java.time.LocalDate;
 
-public class Etudiant extends Adherent{
+public class Etudiant extends Adherent {
 
     private Campus campus;
 
-    public Etudiant(String nom, String prenom, LocalDate dateNaissance, Campus campus) {
+    public Etudiant(String nom, String prenom, LocalDate dateNaissance, Campus campus) throws Exception {
         super(nom, prenom, dateNaissance);
         setCampus(campus);
     }
@@ -21,12 +21,13 @@ public class Etudiant extends Adherent{
 
     @Override
     public String toString() {
-        return super.toString() + " " + getAge() + " " + getCampus() ;
+        return super.toString() + " " + getAge() + " " + getCampus();
     }
 
     @Override
     public Location louer(Ressource res) {
         System.out.println("Location gratuite de " + res + " par " + this);
-        return super.louer(res);
+        return null;
     }
+
 }

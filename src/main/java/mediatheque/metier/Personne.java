@@ -12,15 +12,13 @@ public class Personne {
     private Carte carte;
 
     //constructeurs
-    public Personne(String nom, String prenom) {
-//        this.nom = nom;
-//        this.prenom = prenom;
+    public Personne(String nom, String prenom) throws Exception {
         setNom(nom);
         setPrenom(prenom);
         setCarte(new Carte(this));
 
     }
-    public Personne(String nom, String prenom, LocalDate dateNaissance) {
+    public Personne(String nom, String prenom, LocalDate dateNaissance) throws Exception {
         this(nom,prenom);
         setDateNaissance(dateNaissance);
     }
@@ -35,12 +33,12 @@ public class Personne {
         return nom.toUpperCase();
     }
 
-    public void setNom(String propositionNom) {
-        if (propositionNom.length() > 3) {
+    public void setNom(String propositionNom) throws Exception {
+        if (propositionNom.length() >= 3) {
             nom = propositionNom;
         }
         else{
-            System.out.println("Nom invalide");
+            throw new Exception("Le nom " + propositionNom + " est invalide");
         }
     }
 

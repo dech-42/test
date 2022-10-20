@@ -2,11 +2,11 @@ package mediatheque.metier;
 
 import java.time.LocalDate;
 
-public class Adherent extends Personne {
+public abstract class Adherent extends Personne {
 
     private LocalDate dateAdhesion;
 
-    public Adherent(String nom, String prenom, LocalDate dateNaissance) {
+    public Adherent(String nom, String prenom, LocalDate dateNaissance) throws Exception {
         //appel du constructeur parent
         //on lui passe les infos reçues. Il sait comment les traiter
         //la commande super doit etre la tte première chose à faire
@@ -22,9 +22,6 @@ public class Adherent extends Personne {
         this.dateAdhesion = dateAdhesion;
     }
 
-    public Location louer(Ressource res) {
-        System.out.println("location plein tarif de " + res + " par " + this);
-        return null;
-    }
+    public abstract Location louer(Ressource res);
 
 }
