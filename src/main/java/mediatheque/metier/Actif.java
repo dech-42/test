@@ -52,7 +52,7 @@ public class Actif extends Adherent implements Recordable {
         //execution d'une requete en lecture
         String requete = "insert into adherent values (\'" + uuid +"\',\'" + getNom() +"\',\'"+ getPrenom() +"\',\'" +getDateNaissance().toString() +"\')";
 
-        System.out.println(requete);
+        //System.out.println(requete);
         st.execute(requete);
 
         //fermeture connexion

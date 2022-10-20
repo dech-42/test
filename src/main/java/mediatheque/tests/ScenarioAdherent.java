@@ -1,7 +1,12 @@
 package mediatheque.tests;
 
 import mediatheque.metier.*;
+import sauvegarde.SystemeDeSauvegarde;
+import utilitaire.Toolbox;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.Locale;
@@ -97,6 +102,53 @@ public class ScenarioAdherent {
             System.out.println(e.getMessage());
         }
 
+
+        //récupération d'un adhérent aléatoire
+        try {
+            Adherent adherentAleatoire = Adherent.getAdherentAleatoire();
+            System.out.println("Adhérent aléatoire " + adherentAleatoire.toString());
+
+            //la sauvegarde fonctionne car dans la génération de l'adhérent aléatoire, on a déclaré un actif qui
+            //lui est sauvegardable
+            //SystemeDeSauvegarde.getInstance().sauvegarder();
+
+            //créer une classe anonyme qui implémente l'interface runnable
+            //objectif : enregistrer 10 000 adhérents
+            Runnable runnable1 = new Runnable() {
+                @Override
+                public void run() {
+                    for (int i = 0; i < 10000; i++) {
+                        Actif actif = null;
+                        try {
+                            actif = (Actif) Adherent.getAdherentAleatoire();
+                            //actif.save();
+                        } catch (Exception e) {
+                            System.out.println(e.getMessage());
+                        }
+                    }
+                }
+            };
+
+            Thread thread1 = new Thread(runnable1);
+            thread1.start();
+
+            //création d'un type d'adhérent spécifique pour noel 2022 : promo 1/4 du tarif
+            //au final meme sur un abstract on peut faire un traitement spec
+            Adherent adherentNoel2022 = new Adherent("noel","noel1",LocalDate.parse("1989-01-01")) {
+                @Override
+                public Location louer(Ressource res) {
+                    System.out.println("Quart du tarif pour " + this);
+
+                    return null;
+                }
+            };
+
+            adherentNoel2022.louer(null);
+            System.out.println();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
     }
 }

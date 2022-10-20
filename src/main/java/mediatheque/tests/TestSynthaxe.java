@@ -1,5 +1,8 @@
 package mediatheque.tests;
 
+import utilitaire.Toolbox;
+
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Year;
 
@@ -33,7 +36,7 @@ public class TestSynthaxe {
         System.out.println("Bonjour " + type + " " + nom);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         //déclaration variable
         int compteur = 20;
@@ -123,5 +126,15 @@ public class TestSynthaxe {
         System.out.println(perimetre);
 
         saluer(TRUE, "Dechaud");
+
+        //tirer une valeur entre 64 et 227
+        int tirage = Toolbox.getRandomValue(2,4);
+        System.out.println(tirage);
+
+        //obtenir des dates aléatoires
+        for (int i = 0; i < 5; i++) {
+            LocalDate date = Toolbox.getRandomLocalDate(1989,2000);
+            System.out.println(date);
+        }
     }
 }
